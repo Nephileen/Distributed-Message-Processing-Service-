@@ -1,0 +1,42 @@
+spring:
+  application:
+    name: acpCw2Service
+
+  rabbitmq:
+    host: rabbitmq
+    port: 5672
+
+  kafka:
+    bootstrap-servers: kafka:9092
+    consumer:
+      group-id: acp-group
+      auto-offset-reset: earliest
+    producer:
+      retries: 3
+      acks: all
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+
+info:
+  app:
+    name: ACP CW2
+    description: Basically HW
+    version: 0.0.1
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: info, health, env
+  info:
+    env:
+      enabled: true
+
+  endpoint:
+    health:
+      show-details: always
+      probes:
+        enabled: true
+
+server:
+  port: 8080
